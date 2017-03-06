@@ -43,4 +43,16 @@
       margin: 5px;
     }
   }
+
+  > .viewer-button{
+    position: inherit;
+    top:inherit;
+    right: inherit;
+
+    &:before{
+      position: inherit;
+      bottom: 0;
+      left: 0;
+    }
+  }
 }

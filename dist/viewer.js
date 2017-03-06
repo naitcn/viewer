@@ -5,7 +5,7 @@
  * Copyright (c) 2015-2017 Fengyuan Chen
  * Released under the MIT license
  *
- * Date: 2017-03-06T06:49:36.880Z
+ * Date: 2017-03-06T08:46:34.189Z
  */
 
 (function (factory) {
@@ -624,7 +624,6 @@
           }
 
           break;
-
         case 'view':
           this.view($target.data('index'));
           break;
@@ -1122,12 +1121,18 @@
 
     // View the previous image
     prev: function () {
-      this.view(max(this.index - 1, 0));
+      if(this.index - 1<0)
+        this.view(this.length - 1);
+      else
+        this.view(max(this.index - 1, 0));
     },
 
     // View the next image
     next: function () {
-      this.view(min(this.index + 1, this.length - 1));
+      if(this.index + 1>this.length - 1)
+        this.view(0);
+      else
+        this.view(min(this.index + 1, this.length - 1));
     },
 
     /**
@@ -1874,7 +1879,7 @@
           '<li class="viewer-rotate-right" data-action="rotate-right"></li>' +
           '<li class="viewer-flip-horizontal" data-action="flip-horizontal"></li>' +
           '<li class="viewer-flip-vertical" data-action="flip-vertical"></li>' +
-          '<li class="viewer-close" data-action="mix"></li>' +
+          '<li class="viewer-button" data-action="mix"></li>' +
         '</ul>' +
         '<div class="viewer-navbar">' +
           '<ul class="viewer-list"></ul>' +

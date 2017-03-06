@@ -15,7 +15,7 @@
           '<li class="viewer-rotate-right" data-action="rotate-right"></li>' +
           '<li class="viewer-flip-horizontal" data-action="flip-horizontal"></li>' +
           '<li class="viewer-flip-vertical" data-action="flip-vertical"></li>' +
-          '<li class="viewer-close" data-action="mix"></li>' +
+          '<li class="viewer-button" data-action="mix"></li>' +
         '</ul>' +
         '<div class="viewer-navbar">' +
           '<ul class="viewer-list"></ul>' +

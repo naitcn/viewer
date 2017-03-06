@@ -29,7 +29,6 @@
           }
 
           break;
-
         case 'view':
           this.view($target.data('index'));
           break;
