@@ -3,6 +3,7 @@ node_modules
 bower_components
 dist/*.map
 /_*
+.idea/*
 
 # Windows image file caches
 Thumbs.db
