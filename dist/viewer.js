@@ -2,10 +2,10 @@
  * Viewer v0.5.1
  * https://github.com/fengyuanchen/viewer
  *
- * Copyright (c) 2015-2016 Fengyuan Chen
+ * Copyright (c) 2015-2017 Fengyuan Chen
  * Released under the MIT license
  *
- * Date: 2016-03-11T07:57:59.486Z
+ * Date: 2017-03-06T06:49:36.880Z
  */
 
 (function (factory) {
@@ -118,12 +118,13 @@
     var scaleX = options.scaleX;
     var scaleY = options.scaleY;
 
-    if (isNumber(rotate)) {
-      transforms.push('rotate(' + rotate + 'deg)');
-    }
-
+    // Scale should come first before rotate
     if (isNumber(scaleX) && isNumber(scaleY)) {
       transforms.push('scale(' + scaleX + ',' + scaleY + ')');
+    }
+
+    if (isNumber(rotate)) {
+      transforms.push('rotate(' + rotate + 'deg)');
     }
 
     return transforms.length ? transforms.join(' ') : 'none';
@@ -468,9 +469,9 @@
             '<img' +
               ' src="' + src + '"' +
               ' data-action="view"' +
-              ' data-index="' +  i + '"' +
-              ' data-original-url="' +  (url || src) + '"' +
-              ' alt="' +  alt + '"' +
+              ' data-index="' + i + '"' +
+              ' data-original-url="' + (url || src) + '"' +
+              ' alt="' + alt + '"' +
             '>' +
           '</li>'
         );
@@ -912,7 +913,6 @@
       }
 
       if (action) {
-        event.preventDefault();
         this.action = action;
 
         // IE8  has `event.pageX/Y`, but not `event.originalEvent.pageX/Y`
@@ -969,8 +969,6 @@
       var action = this.action;
 
       if (action) {
-        event.preventDefault();
-
         if (action === 'move' && this.options.transition) {
           this.$image.addClass(CLASS_TRANSITION);
         }
@@ -1655,7 +1653,6 @@
       this.transitioning = false;
       this.isFulled = true;
       this.isShown = true;
-      this.isVisible = true;
       this.render();
       this.bind();
 
@@ -1673,7 +1670,6 @@
       this.isViewed = false;
       this.isFulled = false;
       this.isShown = false;
-      this.isVisible = false;
       this.unbind();
       this.$body.removeClass(CLASS_OPEN);
       this.$viewer.addClass(CLASS_HIDE);
@@ -1878,6 +1874,7 @@
           '<li class="viewer-rotate-right" data-action="rotate-right"></li>' +
           '<li class="viewer-flip-horizontal" data-action="flip-horizontal"></li>' +
           '<li class="viewer-flip-vertical" data-action="flip-vertical"></li>' +
+          '<li class="viewer-close" data-action="mix"></li>' +
         '</ul>' +
         '<div class="viewer-navbar">' +
           '<ul class="viewer-list"></ul>' +
